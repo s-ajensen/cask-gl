@@ -1,0 +1,76 @@
+{
+ :paths     ["src/clj" "src/cljc" "resources"]
+ :mvn/repos {"maven_central" {:url "https://repo.maven.apache.org/maven2/"}}
+ :deps      {org.lwjgl/lwjgl                            {:local/root "lib/lwjgl/lwjgl.jar"}
+
+             org.lwjgl/lwjgl$natives-macos-arm64        {:local/root "lib/lwjgl/lwjgl-natives-macos-arm64.jar"}
+             org.lwjgl/lwjgl$natives-linux              {:local/root "lib/lwjgl/lwjgl-natives-linux.jar"}
+
+             org.lwjgl/lwjgl-assimp                     {:local/root "lib/lwjgl/assimp/lwjgl-assimp.jar"}
+             org.lwjgl/lwjgl-assimp$natives-macos-arm64 {:local/root "lib/lwjgl/assimp/lwjgl-assimp-natives-macos-arm64.jar"}
+             org.lwjgl/lwjgl-assimp$natives-linux       {:local/root "lib/lwjgl/assimp/lwjgl-assimp-natives-linux.jar"}
+             org.lwjgl/lwjgl-assimp$natives-windows     {:local/root "lib/lwjgl/assimp/lwjgl-assimp-natives-windows.jar"}
+
+             org.lwjgl/lwjgl-glfw                       {:local/root "lib/lwjgl/glfw/lwjgl-glfw.jar"}
+             org.lwjgl/lwjgl-glfw$natives-macos-arm64   {:local/root "lib/lwjgl/glfw/lwjgl-glfw-natives-macos-arm64.jar"}
+             org.lwjgl/lwjgl-glfw$natives-linux         {:local/root "lib/lwjgl/glfw/lwjgl-glfw-natives-linux.jar"}
+             org.lwjgl/lwjgl-glfw$natives-windows       {:local/root "lib/lwjgl/glfw/lwjgl-glfw-natives-windows.jar"}
+
+             org.lwjgl/lwjgl-openal                     {:local/root "lib/lwjgl/openal/lwjgl-openal.jar"}
+             org.lwjgl/lwjgl-openal$natives-macos-arm64 {:local/root "lib/lwjgl/openal/lwjgl-openal-natives-macos-arm64.jar"}
+             org.lwjgl/lwjgl-openal$natives-linux       {:local/root "lib/lwjgl/openal/lwjgl-openal-natives-linux.jar"}
+             org.lwjgl/lwjgl-openal$natives-windows     {:local/root "lib/lwjgl/openal/lwjgl-openal-natives-windows.jar"}
+
+             org.lwjgl/lwjgl-opengl                     {:local/root "lib/lwjgl/opengl/lwjgl-opengl.jar"}
+             org.lwjgl/lwjgl-opengl$natives-macos-arm64 {:local/root "lib/lwjgl/opengl/lwjgl-opengl-natives-macos-arm64.jar"}
+             org.lwjgl/lwjgl-opengl$natives-linux       {:local/root "lib/lwjgl/opengl/lwjgl-opengl-natives-linux.jar"}
+             org.lwjgl/lwjgl-opengl$natives-windows     {:local/root "lib/lwjgl/opengl/lwjgl-opengl-natives-windows.jar"}
+
+             org.lwjgl/lwjgl-stb                        {:local/root "lib/lwjgl/stb/lwjgl-stb.jar"}
+             org.lwjgl/lwjgl-stb$natives-macos-arm64    {:local/root "lib/lwjgl/stb/lwjgl-stb-natives-macos-arm64.jar"}
+             org.lwjgl/lwjgl-stb$natives-linux          {:local/root "lib/lwjgl/stb/lwjgl-stb-natives-linux.jar"}
+             org.lwjgl/lwjgl-stb$natives-windows        {:local/root "lib/lwjgl/stb/lwjgl-stb-natives-windows.jar"}
+
+             org.joml/joml                              {:mvn/version "1.10.6"}
+             net.mikera/core.matrix                     {:mvn/version "0.63.0"}
+
+             org.l33tlabs.twl/pngdecoder                {:mvn/version "1.0"}
+
+             org.ode4j/core                             {:mvn/version "0.5.3"}
+
+             com.cleancoders.c3kit/apron                {:git/url "git@github.com:cleancoders/c3kit-apron.git" :git/sha "5b71141c3f4a96af0b68841aa44e089ab59cb505"}
+             sajensen/obj-utils                         {:git/url "git@github.com:s-ajensen/obj-utils.git" :git/sha "b11d98f2677a6a788e5fe99b60cb43565d82bc92"}
+
+             org.clojure/clojure                        {:mvn/version "1.11.1"}
+             
+             org.ice1000.jimgui/core {:mvn/version "v0.22.0"}}
+ :aliases   {
+             :test       {:extra-deps  {
+                                        speclj/speclj {:mvn/version "3.4.5"}
+                                        }
+                          :extra-paths ["dev" "spec/clj" "spec/cljc"]}
+             :cljs       {:main-opts ["-m" "c3kit.scaffold.cljs"]}
+             :css        {:main-opts ["-m" "c3kit.scaffold.css"]}
+             :dev        {:main-opts ["-m" "cask.dev"]}
+             :dev-       {:main-opts ["-m" "cask.dev" "cljs" "css"]}
+             :repl       {:jvm-opts ["-XstartOnFirstThread"] :main-opts ["-e" "(require,'cask.repl)" "-e" "(in-ns,'cask.repl)" "--repl"] :extra-paths ["dev"]}
+             :run        {:jvm-opts ["-XstartOnFirstThread"] :main-opts ["-m" "cask.main"]}
+             :projection {:extra-paths ["dev"]
+                          :jvm-opts    ["-XstartOnFirstThread"]
+                          :main-opts   ["-m" "cask.projection-scratch"]}
+             :imgui      {:extra-paths ["dev"]
+                          ;:jvm-opts    ["-XstartOnFirstThread"]
+                          :main-opts   ["-m" "cask.imgui-scratch"]}
+             :texture    {:extra-paths ["dev"]
+                          :jvm-opts    ["-XstartOnFirstThread"]
+                          :main-opts   ["-m" "cask.texture-scratch"]}
+             :normalized {:extra-paths ["dev"]
+                          :jvm-opts    ["-XstartOnFirstThread"]
+                          :main-opts   ["-m" "cask.normalized-scratch"]}
+             :physics    {:extra-paths ["dev"]
+                          :jvm-opts    ["-XstartOnFirstThread"]
+                          :main-opts   ["-m" "cask.physics-scratch"]}
+             :spec       {:jvm-opts  ["-XstartOnFirstThread"]
+                          :main-opts ["-m" "speclj.main" "-c"]}
+             }
+ }
